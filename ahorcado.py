@@ -13,7 +13,15 @@ class Ahorcado:
             self.letras_usadas.append(letra)
             print (f"Letra correcta: {letra}")
             return True
-    
+        
+    def validar_palabra(self, palabra):
+        if palabra != self.palabra_a_adivinar:
+            print (f"Palabra incorrecta: {palabra}")
+            return False
+        else:
+            print (f"Palabra correcta: {palabra}")
+            return True
+
     
     
 

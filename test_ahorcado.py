@@ -41,7 +41,36 @@ def test_intento_correcto():
     assert juego.letras_usadas == ["i"]
     assert juego.intentos_restantes == 7  
 
-        
+def test_estado_del_juego():
+    juego = Ahorcado()
+    juego.palabra_a_adivinar = "agiles"
+    juego.validar_letra("a")
+    juego.validar_letra("g")
+    assert juego.validar_fin_del_juego() == False
+
+def test_estado_del_juego_ganado():
+    juego = Ahorcado()
+    juego.palabra_a_mostrar = "agiles"
+    juego.iniciar_juego(palabra = "agiles")
+    juego.validar_letra("a")
+    juego.validar_letra("g")
+    juego.validar_letra("i")
+    juego.validar_letra("l")
+    juego.validar_letra("e")
+    juego.validar_letra("s")
+    assert juego.validar_fin_del_juego() == True
+
+def test_estado_del_juego_perdido():
+    juego = Ahorcado()
+    juego.iniciar_juego(palabra = "agiles")
+    juego.validar_letra("r")
+    juego.validar_letra("p")
+    juego.validar_letra("q")
+    juego.validar_letra("y")
+    juego.validar_letra("t")
+    juego.validar_letra("z")
+    juego.validar_letra("j")
+    assert juego.validar_fin_del_juego() == True
 
 if __name__ == "__main__":
     test_letra_incorrecta()
@@ -51,4 +80,7 @@ if __name__ == "__main__":
     test_iniciar_juego()
     test_intento_incorrecto()
     test_intento_correcto()
+    test_estado_del_juego()
+    test_estado_del_juego_ganado()
+    test_estado_del_juego_perdido()
     print("Test passed!")

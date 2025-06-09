@@ -3,29 +3,28 @@
 
 from ahorcado import Ahorcado
 
-
 def test_letra_incorrecta():
     juego = Ahorcado()
     juego.palabra_a_adivinar = "agiles"
-    assert juego.validar_letra("x") is False
+    assert juego.validar_letra("x") == False
 
 
 def test_letra_correcta():
     juego = Ahorcado()
     juego.palabra_a_adivinar = "agiles"
-    assert juego.validar_letra("i") is True
+    assert juego.validar_letra("i") == True
 
 
 def test_palabra_incorrecta():
     juego = Ahorcado()
     juego.palabra_a_adivinar = "agiles"
-    assert juego.validar_palabra("metodologias") is False
+    assert juego.validar_palabra("metodologias") == False
 
 
 def test_palabra_correcta():
     juego = Ahorcado()
     juego.palabra_a_adivinar = "agiles"
-    assert juego.validar_palabra("agiles") is True
+    assert juego.validar_palabra("agiles") == True
 
 
 def test_iniciar_juego():
@@ -37,7 +36,7 @@ def test_iniciar_juego():
 def test_intento_incorrecto():
     juego = Ahorcado()
     juego.palabra_a_adivinar = "agiles"
-    assert juego.intento("t") is False
+    assert juego.intento("t") == False
     assert juego.letras_adivinadas == []
     assert juego.letras_usadas == ["t"]
     assert juego.intentos_restantes == 6
@@ -46,7 +45,7 @@ def test_intento_incorrecto():
 def test_intento_correcto():
     juego = Ahorcado()
     juego.palabra_a_adivinar = "agiles"
-    assert juego.intento("i") is True
+    assert juego.intento("i") == True
     assert juego.letras_adivinadas == ["i"]
     assert juego.letras_usadas == ["i"]
     assert juego.intentos_restantes == 7
@@ -57,12 +56,12 @@ def test_estado_del_juego():
     juego.palabra_a_adivinar = "agiles"
     juego.validar_letra("a")
     juego.validar_letra("g")
-    assert juego.validar_fin_del_juego() is False
+    assert not juego.validar_fin_del_juego()
 
 
 def test_estado_del_juego_ganado():
     juego = Ahorcado()
-    juego.palabra_a_mostrar = list("agiles")
+    juego.palabra_a_mostrar = "agiles"
     juego.iniciar_juego(palabra="agiles")
     juego.validar_letra("a")
     juego.validar_letra("g")
@@ -70,7 +69,7 @@ def test_estado_del_juego_ganado():
     juego.validar_letra("l")
     juego.validar_letra("e")
     juego.validar_letra("s")
-    assert juego.validar_fin_del_juego() is True
+    assert juego.validar_fin_del_juego()
 
 
 def test_estado_del_juego_perdido():
@@ -83,7 +82,7 @@ def test_estado_del_juego_perdido():
     juego.validar_letra("t")
     juego.validar_letra("z")
     juego.validar_letra("j")
-    assert juego.validar_fin_del_juego() is True
+    assert juego.validar_fin_del_juego()
 
 
 if __name__ == "__main__":

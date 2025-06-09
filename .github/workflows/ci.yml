@@ -1,0 +1,40 @@
+name: CIServer Grupo1
+
+# Se dispara en cada push o pullrequest que hagamos a "main"
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Con esto clonamos el repo y queda listo para hacer cualquier acción
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Le configuramos una versión de Python
+      - name: Setup Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # Acá instalamos las dependencias 
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pytest coverage flake8
+
+      # Esto es un analisis para ver la sintaxis, variables que quedan sin usar, los warnings y esas cosas. Te tira error si encuentra algo.
+      - name: Static analysis (flake8)
+        run: flake8 . --max-line-length=100
+
+      # Con esto ejecutamos todos los test y vemos qué onda
+      - name: Run tests & coverage
+        run: |
+          coverage run -m pytest
+          coverage report
+          coverage xml -i

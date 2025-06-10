@@ -36,10 +36,10 @@ class Ahorcado:
 
     def validar_palabra(self, palabra):
         if palabra != self.palabra_a_adivinar:
-            print(f"Palabra incorrecta: {palabra}")
+            #print(f"Palabra incorrecta: {palabra}")
             return False
         else:
-            print(f"Palabra correcta: {palabra}")
+            #print(f"Palabra correcta: {palabra}")
             return True
 
     def iniciar_juego(self, palabra=None, dificultad=None, pista=None):
@@ -97,9 +97,9 @@ class Ahorcado:
         return self.palabra_a_adivinar
     
     def obtener_pista(self):
-        print(f"Pista: {self.pista}")
-        print(f"lo pasa pista")
         return self.pista
     
+    def letras_utilizadas(self, letra):
+        return letra in self.letras_adivinadas
 
 

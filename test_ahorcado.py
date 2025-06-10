@@ -118,6 +118,12 @@ def test_obtener_pista():
     juego.iniciar_juego(palabra="mate", pista=pista)
     assert juego.obtener_pista() == pista  
 
+def test_letras_utilizadas():
+    juego = Ahorcado()
+    juego.iniciar_juego(palabra="casa")
+    juego.intento("a")  
+    assert juego.letras_utilizadas("a") == True  
+    assert juego.letras_utilizadas("c") == False  
 
 
 
@@ -138,5 +144,5 @@ if __name__ == "__main__":
     test_iniciar_con_dificultad()
     test_iniciar_con_palabra_directa()
     test_obtener_pista()
-    
+    test_letras_utilizadas()
     print("Test passed!")

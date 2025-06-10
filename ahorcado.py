@@ -1,9 +1,11 @@
 # Este es ahorcado.py
 import random
 
+
 palabras_faciles = ["agua", "gato", "mesa", "libro"]
 palabras_intermedias = ["programa", "computadora", "telefono"]
 palabras_dificiles = ["algoritmo", "metodologia", "paradigma"]
+
 
 class Ahorcado:
     def __init__(self):
@@ -19,7 +21,7 @@ class Ahorcado:
     def validar_letra(self, letra):
         if len(self.palabra_a_mostrar) != len(self.palabra_a_adivinar):
             self.palabra_a_mostrar = ['_'] * len(self.palabra_a_adivinar)
-        
+
         if letra not in self.palabra_a_adivinar:
             print(f"Letra incorrecta: {letra}")
             self.intentos_restantes -= 1
@@ -44,12 +46,13 @@ class Ahorcado:
         self.letras_adivinadas = []
         self.letras_usadas = []
         self.juego_finalizado = False
-        
+
         if palabra is None or palabra == "":
             self.palabra_a_adivinar = self.elegir_palabra(dificultad)
         else:
             print(f"Palabra a adivinar: {palabra}")
             self.palabra_a_adivinar = palabra
+
         self.palabra_a_mostrar = ['_' for _ in self.palabra_a_adivinar]
         self.intentos_restantes = 7
 
@@ -65,11 +68,8 @@ class Ahorcado:
         if letra in self.letras_usadas:
             return False
 
-        # Marco la letra como usada
         self.letras_usadas.append(letra)
-
         if self.validar_letra(letra):
-            # Letra correcta: guardo en adivinadas
             self.letras_adivinadas.append(letra)
             return True
 
@@ -91,4 +91,3 @@ class Ahorcado:
         else:
             self.palabra_a_adivinar = random.choice(palabras_dificiles)
         return self.palabra_a_adivinar
-

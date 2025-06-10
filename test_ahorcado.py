@@ -1,31 +1,30 @@
 # Este es test_ahorcado.py
 
-
-from ahorcado import *
+from ahorcado import Ahorcado, palabras_faciles, palabras_intermedias, palabras_dificiles
 
 
 def test_letra_incorrecta():
     juego = Ahorcado()
-    juego.iniciar_juego(palabra="agiles") 
-    assert juego.validar_letra("x") == False
+    juego.iniciar_juego(palabra="agiles")
+    assert not juego.validar_letra("x")
 
 
 def test_letra_correcta():
     juego = Ahorcado()
-    juego.iniciar_juego(palabra="agiles") 
-    assert juego.validar_letra("i") == True
+    juego.iniciar_juego(palabra="agiles")
+    assert juego.validar_letra("i")
 
 
 def test_palabra_incorrecta():
     juego = Ahorcado()
-    juego.iniciar_juego(palabra="agiles") 
-    assert juego.validar_palabra("metodologias") == False
+    juego.iniciar_juego(palabra="agiles")
+    assert not juego.validar_palabra("metodologias")
 
 
 def test_palabra_correcta():
     juego = Ahorcado()
     juego.iniciar_juego(palabra="agiles")
-    assert juego.validar_palabra("agiles") == True
+    assert juego.validar_palabra("agiles")
 
 
 def test_iniciar_juego():
@@ -36,8 +35,8 @@ def test_iniciar_juego():
 
 def test_intento_incorrecto():
     juego = Ahorcado()
-    juego.iniciar_juego(palabra="agiles") 
-    assert juego.intento("t") == False
+    juego.iniciar_juego(palabra="agiles")
+    assert not juego.intento("t")
     assert juego.letras_adivinadas == []
     assert juego.letras_usadas == ["t"]
     assert juego.intentos_restantes == 6
@@ -46,7 +45,7 @@ def test_intento_incorrecto():
 def test_intento_correcto():
     juego = Ahorcado()
     juego.iniciar_juego(palabra="agiles")
-    assert juego.intento("i") == True
+    assert juego.intento("i")
     assert juego.letras_adivinadas == ["i"]
     assert juego.letras_usadas == ["i"]
     assert juego.intentos_restantes == 7
@@ -62,43 +61,37 @@ def test_estado_del_juego():
 
 def test_estado_del_juego_ganado():
     juego = Ahorcado()
-    #juego.palabra_a_mostrar = list("agiles")
     juego.iniciar_juego(palabra="agiles")
-    juego.validar_letra("a")
-    juego.validar_letra("g")
-    juego.validar_letra("i")
-    juego.validar_letra("l")
-    juego.validar_letra("e")
-    juego.validar_letra("s")
+    for letra in "agiles":
+        juego.validar_letra(letra)
     assert juego.validar_fin_del_juego()
 
 
 def test_estado_del_juego_perdido():
     juego = Ahorcado()
     juego.iniciar_juego(palabra="agiles")
-    juego.validar_letra("r")
-    juego.validar_letra("p")
-    juego.validar_letra("q")
-    juego.validar_letra("y")
-    juego.validar_letra("t")
-    juego.validar_letra("z")
-    juego.validar_letra("j")
+    for letra in ["r", "p", "q", "y", "t", "z", "j"]:
+        juego.validar_letra(letra)
     assert juego.validar_fin_del_juego()
-    
+
+
 def test_elegir_palabra_facil():
     juego = Ahorcado()
     palabra = juego.elegir_palabra("facil")
     assert palabra in palabras_faciles
 
+
 def test_elegir_palabra_intermedia():
     juego = Ahorcado()
     palabra = juego.elegir_palabra("intermedia")
     assert palabra in palabras_intermedias
-    
+
+
 def test_elegir_palabra_dificil():
     juego = Ahorcado()
     palabra = juego.elegir_palabra("dificil")
     assert palabra in palabras_dificiles
+
 
 def test_iniciar_con_dificultad():
     juego = Ahorcado()
@@ -108,7 +101,9 @@ def test_iniciar_con_dificultad():
     assert len(juego.palabra_a_mostrar) == len(juego.palabra_a_adivinar)
     assert not juego.juego_finalizado
 
+
 if __name__ == "__main__":
+    # Ejecuta pruebas de forma manual
     test_letra_incorrecta()
     test_letra_correcta()
     test_palabra_incorrecta()
@@ -122,5 +117,5 @@ if __name__ == "__main__":
     test_elegir_palabra_facil()
     test_elegir_palabra_intermedia()
     test_elegir_palabra_dificil()
-    # test_iniciar_con_dificultad()
+    test_iniciar_con_dificultad()
     print("Test passed!")

@@ -24,11 +24,11 @@ class Ahorcado:
             self.palabra_a_mostrar = ['_'] * len(self.palabra_a_adivinar)
 
         if letra not in self.palabra_a_adivinar:
-            #print(f"Letra incorrecta: {letra}")
+            # print(f"Letra incorrecta: {letra}")
             self.intentos_restantes -= 1
             return False
         else:
-            #print(f"Letra correcta: {letra}")
+            # print(f"Letra correcta: {letra}")
             for i, char in enumerate(self.palabra_a_adivinar):
                 if char == letra:
                     self.palabra_a_mostrar[i] = letra
@@ -36,10 +36,10 @@ class Ahorcado:
 
     def validar_palabra(self, palabra):
         if palabra != self.palabra_a_adivinar:
-            #print(f"Palabra incorrecta: {palabra}")
+            # print(f"Palabra incorrecta: {palabra}")
             return False
         else:
-            #print(f"Palabra correcta: {palabra}")
+            # print(f"Palabra correcta: {palabra}")
             return True
 
     def iniciar_juego(self, palabra=None, dificultad=None, pista=None):
@@ -51,9 +51,9 @@ class Ahorcado:
 
         if palabra is None or palabra == "":
             self.palabra_a_adivinar = self.elegir_palabra(dificultad)
-            self.pista = "" # no la vamos a dar una pista en este caso 
+            self.pista = ""  # no la vamos a dar una pista en este caso
         else:
-            #print(f"Palabra a adivinar: {palabra}")
+            # print(f"Palabra a adivinar: {palabra}")
             self.palabra_a_adivinar = palabra
             self.pista = pista if pista else ""
 
@@ -95,11 +95,9 @@ class Ahorcado:
         else:
             self.palabra_a_adivinar = random.choice(palabras_dificiles)
         return self.palabra_a_adivinar
-    
+
     def obtener_pista(self):
         return self.pista
-    
+
     def letras_utilizadas(self, letra):
         return letra in self.letras_adivinadas
-
-

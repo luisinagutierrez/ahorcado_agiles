@@ -29,6 +29,7 @@ def test_palabra_correcta():
 
 def test_iniciar_juego():
     juego = Ahorcado()
+    juego.iniciar_juego(palabra="agiles")
     assert juego.intentos == 7
     assert juego.letras_adivinadas == []
 
@@ -101,6 +102,7 @@ def test_iniciar_con_dificultad():
     assert len(juego.palabra_a_mostrar) == len(juego.palabra_a_adivinar)
     assert not juego.juego_finalizado
 
+
 def test_iniciar_con_palabra_directa():
     juego = Ahorcado()
     palabra = "mate"
@@ -112,22 +114,25 @@ def test_iniciar_con_palabra_directa():
     assert juego.intentos_restantes == 7
     assert not juego.juego_finalizado
 
-def test_obtener_pista(): 
+
+def test_obtener_pista():
     juego = Ahorcado()
     pista = "Bebida argentina por excelencia"
     juego.iniciar_juego(palabra="mate", pista=pista)
-    assert juego.obtener_pista() == pista  
+    assert juego.obtener_pista() == pista
+
 
 def test_letras_utilizadas():
     juego = Ahorcado()
     juego.iniciar_juego(palabra="casa")
-    juego.intento("a")  
-    assert juego.letras_utilizadas("a") == True  
-    assert juego.letras_utilizadas("c") == False  
-
+    juego.intento("a")
+    assert juego.letras_utilizadas("a")
+    assert not juego.letras_utilizadas("c")
 
 
 if __name__ == "__main__":
+
+    # Ejecuta pruebas de forma manual
     test_letra_incorrecta()
     test_letra_correcta()
     test_palabra_incorrecta()

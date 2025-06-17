@@ -51,11 +51,13 @@ def test_intento_incorrecto_letras_adivinadas():
     juego.intento("t")
     assert juego.letras_adivinadas == []
 
+
 def test_intento_incorrecto_letras_usadas():
     juego = Ahorcado()
     juego.iniciar_juego(palabra="agiles")
     juego.intento("t")
     assert juego.letras_usadas == ["t"]
+
 
 def test_intento_incorrecto_intentos_restantes():
     juego = Ahorcado()
@@ -91,7 +93,7 @@ def test_intento_correcto_intentos_restantes():
     juego.intento("i")
     assert juego.intentos_restantes == 7
 
-#
+
 def test_estado_del_juego():
     juego = Ahorcado()
     juego.iniciar_juego(palabra="agiles")
@@ -114,6 +116,7 @@ def test_estado_del_juego_perdido():
     for letra in ["r", "p", "q", "y", "t", "z", "j"]:
         juego.validar_letra(letra)
     assert juego.validar_fin_del_juego()
+
 
 def test_elegir_palabra_facil():
     juego = Ahorcado()
@@ -220,7 +223,6 @@ def test_letras_utilizadas_letra_no_utilizada():
 
 if __name__ == "__main__":
 
-    # Ejecuta pruebas de forma manual
     test_letra_incorrecta()
     test_letra_correcta()
     test_palabra_incorrecta()

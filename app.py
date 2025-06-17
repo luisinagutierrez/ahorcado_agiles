@@ -6,7 +6,6 @@ juego = Ahorcado()
 
 
 @app.route('/')
-
 def elegir_dificultad():
     return render_template('dificultad.html')
 

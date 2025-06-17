@@ -1,11 +1,44 @@
 # Este es ahorcado.py
 import random
 
+palabras_faciles = [
+    ["sol", "Astro que ilumina el día"],
+    ["gato", "Animal doméstico que maúlla"],
+    ["árbol", "Planta grande con tronco y ramas"],
+    ["helado", "Postre frío ideal en verano"],
+    ["pelota", "Objeto redondo que se usa para jugar"],
+    ["luna", "Satélite natural de la Tierra"],
+    ["silla", "Mueble donde te sentás"],
+    ["pan", "Alimento básico hecho de harina"],
+    ["agua", "Líquido esencial para la vida"],
+    ["flor", "Parte colorida de algunas plantas"]
+]
 
-palabras_faciles = ["agua", "gato", "mesa", "libro"]
-palabras_intermedias = ["programa", "computadora", "telefono"]
-palabras_dificiles = ["algoritmo", "metodologia", "paradigma"]
+palabras_intermedias = [
+    ["misterio", "Algo que no se puede explicar fácilmente"],
+    ["cautela", "Precaución o cuidado al actuar"],
+    ["brújula", "Instrumento para orientarse"],
+    ["murmullo", "Sonido bajo y continuo de voces"],
+    ["destino", "Lugar o meta a la que se quiere llegar"],
+    ["legado", "Herencia cultural o material que se deja"],
+    ["refugio", "Lugar seguro donde protegerse"],
+    ["espejismo", "Ilusión óptica, especialmente en el desierto"],
+    ["abismo", "Profundidad grande y peligrosa"],
+    ["fragancia", "Olor agradable y suave"]
+]
 
+palabras_dificiles = [
+    ["efervescente", "Que desprende burbujas o entusiasmo"],
+    ["inefable", "Tan increíble que no se puede describir con palabras"],
+    ["arcano", "Muy secreto o difícil de comprender"],
+    ["quimera", "Sueño o ilusión que es casi imposible"],
+    ["elucidar", "Aclarar o explicar algo confuso"],
+    ["parsimonia", "Calma y lentitud excesiva"],
+    ["melancolía", "Tristeza suave y reflexiva"],
+    ["procrastinar", "Postergar o dejar para más tarde una tarea"],
+    ["subrepticio", "Que se hace a escondidas o con disimulo"],
+    ["sagaz", "Que tiene astucia y buen juicio"]
+]
 
 class Ahorcado:
     def __init__(self):

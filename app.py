@@ -29,6 +29,7 @@ def jugar():
         palabra_secreta=juego.palabra_a_adivinar if juego.juego_finalizado else ""
     )
 
+
 @app.route('/intentar', methods=['POST'])
 def intentar():
     letra = request.form.get('letra', '').lower()
@@ -36,6 +37,7 @@ def intentar():
         juego.intento(letra)
         juego.validar_fin_del_juego()
     return redirect(url_for('jugar'))
+
 
 @app.route('/reiniciar')
 def reiniciar():

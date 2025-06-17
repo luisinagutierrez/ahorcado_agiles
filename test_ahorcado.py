@@ -45,6 +45,7 @@ def test_intento_incorrecto_retorno_false():
     resultado = juego.intento("t")
     assert not resultado
 
+
 def test_intento_incorrecto_letras_adivinadas():
     juego = Ahorcado()
     juego.iniciar_juego(palabra="agiles")

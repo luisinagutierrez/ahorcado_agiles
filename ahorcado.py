@@ -40,6 +40,7 @@ palabras_dificiles = [
     ["sagaz", "Que tiene astucia y buen juicio"]
 ]
 
+
 class Ahorcado:
     def __init__(self):
         self.palabra_vacia = ""

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Elige nivel</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <h1>Elige dificultad</h1>
+  <ul>
+    <li><a href="{{ url_for('iniciar', nivel='facil') }}">Fácil</a></li>
+    <li><a href="{{ url_for('iniciar', nivel='intermedia') }}">Intermedia</a></li>
+    <li><a href="{{ url_for('iniciar', nivel='dificil') }}">Difícil</a></li>
+  </ul>
+</body>
+</html>

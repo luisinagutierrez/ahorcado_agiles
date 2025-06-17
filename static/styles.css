@@ -1,0 +1,173 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #ece9e6 0%, #ffffff 100%);
+  color: #333;
+}
+
+.container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  animation: fadeIn 0.6s ease-out;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #000000;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+#palabra {
+  font-size: 2rem;
+  letter-spacing: 0.3em;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  display: inline-block;
+  animation: popIn 0.4s ease-out;
+}
+
+#intentos {
+  font-weight: bold;
+  color: #d9534f;
+  margin-bottom: 1rem;
+  animation: shake 0.4s ease-in-out;
+}
+
+#letras_usadas {
+  color: #555;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+#pista {
+  background: #d9edf7;
+  color: #31708f;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+form {
+  margin-bottom: 1.5rem;
+}
+
+input[type="text"] {
+  width: 60px;
+  padding: 0.6rem;
+  font-size: 1.2rem;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #5cb85c;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s, background-color 0.3s;
+}
+
+button:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+button[type="submit"] {
+  background: #5cb85c;
+  color: #fff;
+}
+button[type="submit"]:hover {
+  background: #4cae4c;
+}
+
+#nuevo_juego {
+  background: #0275d8;
+  color: #fff;
+}
+#nuevo_juego:hover {
+  background: #025aa5;
+}
+
+.difficulty-selection {
+  margin-bottom: 2rem;
+}
+.difficulty-button {
+  margin: 0.3rem;
+  background: #6c757d;
+  color: #fff;
+}
+.difficulty-button.facil {
+  background: #5cb85c;
+}
+.difficulty-button.intermedia {
+  background: #f0ad4e;
+}
+.difficulty-button.dificil {
+  background: #d9534f;
+}
+.difficulty-button:hover {
+  opacity: 0.9;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+  #palabra {
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+  }
+  input[type="text"] {
+    width: 50px;
+    font-size: 1rem;
+  }
+  button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}

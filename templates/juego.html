@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ahorcado</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <h1>Ahorcado</h1>
+  <p>Palabra: <strong>{{ palabra_a_mostrar }}</strong></p>
+  <p>Pista: {{ pista or '–' }}</p>
+  <p>Intentos restantes: {{ intentos }}</p>
+  <p>Letras usadas: {{ letras_usadas }}</p>
+
+  {% if not juego_finalizado %}
+    <form action="{{ url_for('intentar') }}" method="post">
+      <input name="letra" maxlength="1" required autofocus>
+      <button type="submit">Probar</button>
+    </form>
+  {% else %}
+    {% if estado == "Ganaste" %}
+      <h2>¡Ganaste!</h2>
+      <p>¡Felicidades! Has adivinado la palabra <strong>{{ palabra_secreta }}</strong></p>
+    {% else %}
+      <h2>¡Perdiste!</h2>
+      <p>Lo siento, has agotado tus intentos. La palabra era: <strong>{{ palabra_secreta }}</strong></p>
+    {% endif %}
+  {% endif %}
+  <a href="{{ url_for('reiniciar') }}">Jugar de nuevo</a>
+</body>
+</html>

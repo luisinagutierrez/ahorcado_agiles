@@ -5,8 +5,11 @@ app = Flask(__name__)
 juego = Ahorcado()
 
 @app.route('/')
+
+
 def elegir_dificultad():
     return render_template('dificultad.html')
+
 
 @app.route('/iniciar/<nivel>')
 def iniciar(nivel):
@@ -15,6 +18,7 @@ def iniciar(nivel):
     # iniciamos según nivel: "facil" | "intermedia" | "dificil"
     juego.iniciar_juego(dificultad=nivel)
     return redirect(url_for('jugar'))
+
 
 @app.route('/jugar')
 def jugar():
@@ -42,6 +46,7 @@ def intentar():
 @app.route('/reiniciar')
 def reiniciar():
     return redirect(url_for('elegir_dificultad'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

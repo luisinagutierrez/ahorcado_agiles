@@ -101,7 +101,7 @@ class Ahorcado:
         return False
 
     def validar_fin_del_juego(self):
-        if self.intentos_restantes == 0: 
+        if self.intentos_restantes == 0:
             self.juego_finalizado = True
             self.estado = "Perdiste"
         elif "".join(self.palabra_a_mostrar) == self.palabra_a_adivinar:

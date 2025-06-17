@@ -4,8 +4,8 @@ from ahorcado import Ahorcado
 app = Flask(__name__)
 juego = Ahorcado()
 
-@app.route('/')
 
+@app.route('/')
 
 def elegir_dificultad():
     return render_template('dificultad.html')

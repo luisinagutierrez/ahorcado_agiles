@@ -1,0 +1,250 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  background: transparent;
+}
+
+/* Body con fondo negro para mostrar fondo encima */
+body.arcade-machine {
+  position: relative;
+  height: 100%;
+  font-family: 'Press Start 2P', monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  overflow: hidden;
+}
+
+/* Fondo maquinita */
+body.arcade-machine::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/static/images/fondo.png") no-repeat center center;
+  background-size: contain;
+  z-index: 0;
+}
+
+/* Con esto fijo la UI arriba que es la maquinita je */
+.screen-window,
+.game-frame,
+.title-bar,
+.game-screen,
+.final-screen {
+  position: relative;
+  z-index: 1;
+}
+
+#menu-arcade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+.titulo-arcade {
+  font-size: 2.5rem;
+  margin-top: -2rem;
+  margin-bottom: 5rem;
+  background: linear-gradient(180deg,
+    #FFFF00 0%,
+    #FFCC00 33%,
+    #FF6600 66%,
+    #CC0000 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.botones-dificultad {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 200px;
+}
+
+.boton-retro {
+  font-family: 'Press Start 2P', monospace;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border: 3px solid;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: background 0.2s, transform 0.1s;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+.boton-retro:hover {
+  transform: translateY(-2px);
+}
+.boton-retro.facil {
+  color: #5cb85c;
+  border-color: #5cb85c;
+}
+.boton-retro.facil:hover {
+  background: rgba(92,184,92,0.2);
+}
+.boton-retro.intermedia {
+  color: #f0ad4e;
+  border-color: #f0ad4e;
+}
+.boton-retro.intermedia:hover {
+  background: rgba(240,173,78,0.2);
+}
+.boton-retro.dificil {
+  color: #d9534f;
+  border-color: #d9534f;
+}
+.boton-retro.dificil:hover {
+  background: rgba(217,83,79,0.2);
+}
+.boton-retro.jugarnuevo {
+  color: #602383;
+  border-color: #602383;
+}
+.boton-retro.jugarnuevo:hover {
+  background: rgba(96, 35, 131, 0.2);
+}
+
+@media (max-width: 480px) {
+  .botones-dificultad {
+    width: 150px;
+  }
+  .titulo-arcade {
+    font-size: 2rem;
+  }
+  .boton-retro {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Juego: pantalla negra interna */
+.screen-window {
+  position: relative;
+  width: 620px;  
+  height: 240px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-frame,
+.final-screen {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos de contenido de juego */
+.game-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: #0F0;
+}
+
+.info {
+  font-size: 1rem;
+}
+.highlight {
+  color: #FFD700;
+}
+
+.input-form {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.input-letra {
+  width: 50px;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+  border: 3px solid #0F0;
+  background: #000;
+  color: #0F0;
+}
+.input-letra:focus {
+  outline: none;
+  box-shadow: 0 0 5px #0F0;
+}
+
+.word-display {
+  font-size: 2rem;
+  letter-spacing: 0.3rem;
+}
+
+.word-display.small-font {
+  font-size: 1.4rem;       
+  letter-spacing: 0.10em;  
+}
+.final {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.message {
+  font-size: 1rem;
+}
+
+/* Barra superior con título y corazones */
+.title-bar {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+.heart-count {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+.heart-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-right: 1px;
+}
+.heart-x {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.2rem;
+  color: #FFF;
+  text-shadow: 0 0 2px #000;
+}
+
+/* Pista */
+.pista-btn {
+  margin-top: 1rem;
+}
+#pista-text {
+  margin: 1rem auto 0;    
+  font-size: 1rem;
+  color: #FFD700;
+  text-align: center;    
+  width: 90%;            
+}

@@ -1,6 +1,5 @@
 import random
 
-# Ahora son diccionarios palabra->pista
 palabras_faciles = {
     "sol": "Astro que ilumina el día",
     "gato": "Animal doméstico que maúlla",
@@ -31,13 +30,13 @@ palabras_dificiles = {
     "efervescente": "Que desprende burbujas o entusiasmo",
     "inefable": "Tan increíble que no se puede describir con palabras",
     "arcano": "Muy secreto o difícil de comprender",
-    "quimera": "Sueño o ilusión que es casi imposible",
+    "quimera": "Criatura mitológica compuesta por partes de diferentes animales",
     "elucidar": "Aclarar o explicar algo confuso",
     "parsimonia": "Calma y lentitud excesiva",
     "melancolia": "Tristeza suave y reflexiva",
     "procrastinar": "Postergar o dejar para más tarde una tarea",
     "subrepticio": "Que se hace a escondidas o con disimulo",
-    "sagaz": "Que tiene astucia y buen juicio"
+    "obnubilar": "Nublar el entendimiento o la claridad mental; confundir o aturdir"
 }
 
 
@@ -54,7 +53,6 @@ class Ahorcado:
         self.estado = ""
 
     def validar_letra(self, letra):
-        # Si no se ha inicializado palabra_a_mostrar a la longitud correcta, aseguramos su estado
         if len(self.palabra_a_mostrar) != len(self.palabra_a_adivinar):
             self.palabra_a_mostrar = ['_'] * len(self.palabra_a_adivinar)
 
@@ -78,10 +76,8 @@ class Ahorcado:
         self.pista = ""
 
         if palabra is None or palabra == "":
-            # Elegir según dificultad
             palabra_elegida = self.elegir_palabra(dificultad)
             self.palabra_a_adivinar = palabra_elegida
-            # self.pista ya se asigna en elegir_palabra
         else:
             self.palabra_a_adivinar = palabra
             self.pista = pista if pista else ""

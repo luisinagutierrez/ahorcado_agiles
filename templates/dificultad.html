@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html>
-<head><title>Elige nivel</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Elige nivel - Ahorcado Retro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='retro.css') }}">
 </head>
-<body>
-  <h1>Elige dificultad</h1>
-  <ul>
-    <li><a href="{{ url_for('iniciar', nivel='facil') }}">Fácil</a></li>
-    <li><a href="{{ url_for('iniciar', nivel='intermedia') }}">Intermedia</a></li>
-    <li><a href="{{ url_for('iniciar', nivel='dificil') }}">Difícil</a></li>
-  </ul>
+<body class="arcade-machine">
+  <div class="screen-window">
+    <div class="game-frame">
+      <div id="menu-arcade">
+        <h1 class="titulo-arcade">AHORCADO</h1>
+        <div class="botones-dificultad">
+          <a href="{{ url_for('iniciar', nivel='facil') }}" class="boton-retro facil">FACIL</a>
+          <a href="{{ url_for('iniciar', nivel='intermedia') }}" class="boton-retro intermedia">INTERMEDIO</a>
+          <a href="{{ url_for('iniciar', nivel='dificil') }}" class="boton-retro dificil">DIFICIL</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

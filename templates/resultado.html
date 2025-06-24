@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Resultado - Ahorcado Retro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='retro.css') }}">
+</head>
+<body class="arcade-machine">
+  <div class="screen-window">
+    <div class="game-screen">
+      <h2 class="titulo-arcade">
+        {% if estado == 'Ganaste' %}
+          ¡GANASTE!
+        {% else %}
+          ¡PERDISTE!
+        {% endif %}
+      </h2>
+      <p class="info highlight">La palabra era: <strong>{{ palabra_secreta }}</strong></p>
+      <a href="{{ url_for('reiniciar') }}" class="boton-retro jugarnuevo" style="margin-top: 2rem">JUGAR DE NUEVO</a>
+    </div>
+  </div>
+</body>
+</html>

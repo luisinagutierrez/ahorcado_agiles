@@ -55,11 +55,10 @@ body.arcade-machine::before {
   margin-top: -2rem;
   margin-bottom: 5rem;
   background: linear-gradient(180deg,
-    #FFFF00 0%,
-    #FFCC00 33%,
-    #FF6600 66%,
-    #CC0000 100%
-  );
+      #FFFF00 0%,
+      #FFCC00 33%,
+      #FF6600 66%,
+      #CC0000 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -84,56 +83,404 @@ body.arcade-machine::before {
   width: 100%;
   text-align: center;
 }
+
 .boton-retro:hover {
   transform: translateY(-2px);
 }
+
 .boton-retro.facil {
   color: #5cb85c;
   border-color: #5cb85c;
 }
+
 .boton-retro.facil:hover {
-  background: rgba(92,184,92,0.2);
+  background: rgba(92, 184, 92, 0.2);
 }
+
 .boton-retro.intermedia {
   color: #f0ad4e;
   border-color: #f0ad4e;
 }
+
 .boton-retro.intermedia:hover {
-  background: rgba(240,173,78,0.2);
+  background: rgba(240, 173, 78, 0.2);
 }
+
 .boton-retro.dificil {
   color: #d9534f;
   border-color: #d9534f;
 }
+
 .boton-retro.dificil:hover {
-  background: rgba(217,83,79,0.2);
+  background: rgba(217, 83, 79, 0.2);
 }
+
 .boton-retro.jugarnuevo {
   color: #602383;
   border-color: #602383;
 }
+
 .boton-retro.jugarnuevo:hover {
   background: rgba(96, 35, 131, 0.2);
 }
 
-@media (max-width: 480px) {
-  .botones-dificultad {
-    width: 150px;
+/* Notebooks y laptops - 15.6" y similares */
+@media (max-width: 1366px) {
+  body.arcade-machine::before {
+    background-size: contain;
   }
+
+  .screen-window {
+    width: 580px;
+    height: 230px;
+  }
+
   .titulo-arcade {
-    font-size: 2rem;
+    font-size: 2.3rem;
+    margin-bottom: 4rem;
   }
+
+  .botones-dificultad {
+    width: 190px;
+  }
+
+  .boton-retro {
+    padding: 0.95rem 1.9rem;
+    font-size: 0.88rem;
+  }
+
+  .word-display {
+    font-size: 1.9rem;
+    letter-spacing: 0.28rem;
+  }
+
+  .word-display.small-font {
+    font-size: 1.35rem;
+  }
+
+  .heart-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .heart-count {
+    right: 18px;
+  }
+
+  .heart-x {
+    font-size: 1.1rem;
+  }
+
+  .info {
+    font-size: 0.95rem;
+  }
+
+  .message {
+    font-size: 0.95rem;
+  }
+
+  #pista-text {
+    font-size: 0.95rem;
+  }
+}
+
+/* Resolución específica para notebooks HD 1366x768 */
+@media (max-width: 768px) {
+  body.arcade-machine {
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+
+  .screen-window {
+    width: 550px;
+    height: 200px;
+  }
+
+  .titulo-arcade {
+    font-size: 2.1rem;
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+  }
+
+  #menu-arcade {
+    gap: 1.5rem;
+  }
+
+  .game-screen {
+    gap: 0.8rem;
+  }
+
+  .final {
+    gap: 0.8rem;
+  }
+
+  .word-display {
+    font-size: 1.7rem;
+    letter-spacing: 0.25rem;
+  }
+
+  .word-display.small-font {
+    font-size: 1.25rem;
+  }
+}
+
+/* Pantallas medianas - Tablets */
+@media (max-width: 1024px) {
+  body.arcade-machine::before {
+    background-size: cover;
+  }
+
+  .screen-window {
+    width: 90vw;
+    max-width: 500px;
+    height: 200px;
+  }
+
+  .titulo-arcade {
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+  }
+
+  .botones-dificultad {
+    width: 180px;
+  }
+
+  .boton-retro {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.85rem;
+  }
+
+  .word-display {
+    font-size: 1.8rem;
+    letter-spacing: 0.25rem;
+  }
+
+  .word-display.small-font {
+    font-size: 1.3rem;
+  }
+
+  .heart-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .heart-count {
+    right: 15px;
+  }
+
+  .heart-x {
+    font-size: 1rem;
+  }
+
+  .info {
+    font-size: 0.9rem;
+  }
+
+  .message {
+    font-size: 0.9rem;
+  }
+
+  #pista-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* Pantallas pequeñas - Móviles */
+@media (max-width: 768px) {
+  body.arcade-machine {
+    padding: 1rem;
+  }
+
+  body.arcade-machine::before {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .screen-window {
+    width: 95vw;
+    max-width: 400px;
+    height: 180px;
+  }
+
+  .titulo-arcade {
+    font-size: 1.8rem;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+  }
+
+  .botones-dificultad {
+    width: 160px;
+  }
+
   .boton-retro {
     padding: 0.8rem 1.5rem;
     font-size: 0.8rem;
+  }
+
+  .word-display {
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .word-display.small-font {
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+  }
+
+  .heart-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .heart-count {
+    right: 10px;
+  }
+
+  .heart-x {
+    font-size: 0.9rem;
+  }
+
+  .info {
+    font-size: 0.8rem;
+  }
+
+  .message {
+    font-size: 0.8rem;
+  }
+
+  .input-letra {
+    width: 40px;
+    padding: 0.4rem;
+    font-size: 1rem;
+  }
+
+  .input-form {
+    gap: 0.8rem;
+  }
+
+  #pista-text {
+    font-size: 0.8rem;
+    width: 95%;
+  }
+
+  .title-bar {
+    padding-top: 5px;
+  }
+}
+
+/* Pantallas muy pequeñas - Móviles pequeños */
+@media (max-width: 480px) {
+  body.arcade-machine {
+    padding: 0.5rem;
+  }
+
+  .screen-window {
+    width: 98vw;
+    max-width: 350px;
+    height: 160px;
+  }
+
+  .titulo-arcade {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .botones-dificultad {
+    width: 140px;
+  }
+
+  .boton-retro {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.7rem;
+  }
+
+  .word-display {
+    font-size: 1.3rem;
+    letter-spacing: 0.15rem;
+  }
+
+  .word-display.small-font {
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .heart-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .heart-x {
+    font-size: 0.8rem;
+  }
+
+  .info {
+    font-size: 0.7rem;
+  }
+
+  .message {
+    font-size: 0.7rem;
+  }
+
+  .input-letra {
+    width: 35px;
+    padding: 0.3rem;
+    font-size: 0.9rem;
+    border-width: 2px;
+  }
+
+  .input-form {
+    gap: 0.5rem;
+  }
+
+  #pista-text {
+    font-size: 0.7rem;
+    margin-top: 0.5rem;
+  }
+
+  .game-screen {
+    gap: 0.8rem;
+  }
+
+  .final {
+    gap: 0.8rem;
+  }
+}
+
+/* Orientación landscape para móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+  body.arcade-machine {
+    align-items: flex-start;
+    padding-top: 1rem;
+  }
+
+  .screen-window {
+    height: 150px;
+  }
+
+  .titulo-arcade {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+  }
+
+  #menu-arcade {
+    gap: 1rem;
+  }
+
+  .game-screen {
+    gap: 0.5rem;
+  }
+
+  .final {
+    gap: 0.5rem;
   }
 }
 
 /* Juego: pantalla negra interna */
 .screen-window {
   position: relative;
-  width: 620px;  
-  height: 240px; 
+  width: 520px;
+  height: 240px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -165,6 +512,7 @@ body.arcade-machine::before {
 .info {
   font-size: 1rem;
 }
+
 .highlight {
   color: #FFD700;
 }
@@ -174,6 +522,7 @@ body.arcade-machine::before {
   gap: 1rem;
   margin-top: 1rem;
 }
+
 .input-letra {
   width: 50px;
   padding: 0.5rem;
@@ -183,26 +532,29 @@ body.arcade-machine::before {
   background: #000;
   color: #0F0;
 }
+
 .input-letra:focus {
   outline: none;
   box-shadow: 0 0 5px #0F0;
 }
 
 .word-display {
-  font-size: 2rem;
-  letter-spacing: 0.3rem;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
 }
 
 .word-display.small-font {
-  font-size: 1.4rem;       
-  letter-spacing: 0.10em;  
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
 }
+
 .final {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
+
 .message {
   font-size: 1rem;
 }
@@ -216,6 +568,7 @@ body.arcade-machine::before {
   align-items: center;
   padding-top: 10px;
 }
+
 .heart-count {
   position: absolute;
   right: 20px;
@@ -224,12 +577,14 @@ body.arcade-machine::before {
   display: flex;
   align-items: center;
 }
+
 .heart-icon {
   width: 50px;
   height: 50px;
   object-fit: contain;
   margin-right: 1px;
 }
+
 .heart-x {
   font-family: 'Press Start 2P', monospace;
   font-size: 1.2rem;
@@ -241,10 +596,11 @@ body.arcade-machine::before {
 .pista-btn {
   margin-top: 1rem;
 }
+
 #pista-text {
-  margin: 1rem auto 0;    
+  margin: 1rem auto 0;
   font-size: 1rem;
   color: #FFD700;
-  text-align: center;    
-  width: 90%;            
+  text-align: center;
+  width: 90%;
 }

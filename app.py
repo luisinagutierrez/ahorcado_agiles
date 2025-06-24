@@ -4,24 +4,37 @@ from ahorcado import Ahorcado
 app = Flask(__name__)
 app.secret_key = 'tu_clave_secreta_aqui'
 
-juego = Ahorcado()
+def get_juego():
+    """Obtiene o crea una instancia del juego para la sesión actual"""
+    if 'juego_id' not in session:
+        session['juego_id'] = True
+        session['juego'] = Ahorcado()
+    return session['juego']
+
+def reset_juego():
+    """Reinicia completamente el juego creando una nueva instancia"""
+    session.pop('juego_id', None)
+    session.pop('juego', None)
+    session.pop('show_pista', None)
 
 
 @app.route('/')
 def elegir_dificultad():
-    session.pop('show_pista', None)
+    reset_juego() 
     return render_template('dificultad.html')
 
 
 @app.route('/iniciar/<nivel>')
 def iniciar(nivel):
-    session.pop('show_pista', None)
+    reset_juego()
+    juego = get_juego()
     juego.iniciar_juego(dificultad=nivel)
     return redirect(url_for('jugar'))
 
 
 @app.route('/jugar')
 def jugar():
+    juego = get_juego()
     if request.args.get('mostrar_pista') == '1':
         session['show_pista'] = True
     show_pista = session.get('show_pista', False)
@@ -48,6 +61,7 @@ def jugar():
 
 @app.route('/intentar', methods=['POST'])
 def intentar():
+    juego = get_juego()
     letra = request.form.get('letra', '').lower()
     if letra and not juego.juego_finalizado:
         juego.intento(letra)
@@ -57,8 +71,9 @@ def intentar():
 
 @app.route('/reiniciar')
 def reiniciar():
-    session.pop('show_pista', None)
+    reset_juego()  
     return redirect(url_for('elegir_dificultad'))
+
 
 
 if __name__ == '__main__':

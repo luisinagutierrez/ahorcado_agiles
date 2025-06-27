@@ -48,7 +48,7 @@ def iniciar(nivel):
     guardar_estado_en_session(juego)
     return redirect(url_for('jugar'))
 
-'''@app.route('/inicio')
+@app.route('/inicio')
 def inicio_personalizado():
     session.pop('show_pista', None)
     palabra = request.args.get('palabra', '')
@@ -56,7 +56,7 @@ def inicio_personalizado():
     juego = Ahorcado()
     juego.iniciar_juego(palabra=palabra, pista=pista)
     guardar_estado_en_session(juego)
-    return redirect(url_for('jugar'))'''
+    return redirect(url_for('jugar'))
 
 @app.route('/jugar')
 def jugar():

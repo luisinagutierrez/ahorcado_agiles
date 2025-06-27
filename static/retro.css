@@ -60,6 +60,7 @@ body.arcade-machine::before {
       #FF6600 66%,
       #CC0000 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -137,7 +138,7 @@ body.arcade-machine::before {
 
   .titulo-arcade {
     font-size: 2.3rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
   }
 
   .botones-dificultad {
@@ -159,12 +160,16 @@ body.arcade-machine::before {
   }
 
   .heart-icon {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     width: 45px;
     height: 45px;
   }
 
   .heart-count {
     right: 18px;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
   }
 
   .heart-x {
@@ -458,13 +463,13 @@ body.arcade-machine::before {
   }
 
   .titulo-arcade {
-    margin-top: 0;
-    margin-bottom: 1rem;
+    margin-top: 3rem;
+    margin-bottom: 0.2rem;
     font-size: 1.6rem;
   }
 
   #menu-arcade {
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   .game-screen {
@@ -479,7 +484,7 @@ body.arcade-machine::before {
 /* Juego: pantalla negra interna */
 .screen-window {
   position: relative;
-  width: 520px;
+  width: 410px;
   height: 240px;
   display: flex;
   justify-content: center;

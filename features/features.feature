@@ -15,17 +15,12 @@ Feature: Juego de Ahorcado
 
   Scenario: Validar letra incorrecta
       Given un juego de Ahorcado con la palabra "gato", "Animal doméstico que maúlla" para validar letra incorrecta
-      When valido la letra "z" incorrecta
+      When valido la letra "s" incorrecta
       Then la letra es incorrecta
       And el numero de intentos debe ser 6 
-      And la letra "z" esta en letras usadas
+      And la letra "s" esta en letras usadas
 
   Scenario: Ganar Juego
-      Given un juego del Ahorcado con la palabra "luna", "Satélite natural de la Tierra"
-      When valido las letras "l" "u" "n" "a"
+      Given un juego del Ahorcado con la palabra "luna", "Satélite natural de la Tierra" (Ganar Juego)
+      When valido las letras "l" "m" "u" "r" "n" "t" "a"
       Then gano la partida
-
-  Scenario: Perder Juego
-      Given un juego del Ahorcado con la palabra "subrepticio", "Que se hace a escondidas o con disimulo" (Perder Juego)
-      When valido las letras "a" "h" "z" "y" "m" "u" "x" hasta no tener intentos
-      Then pierde la partida

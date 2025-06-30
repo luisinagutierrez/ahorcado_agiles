@@ -27,7 +27,7 @@
 
         {% if not juego_finalizado %}
           <form action="{{ url_for('intentar') }}" method="post" class="input-form">
-            <input name="letra" maxlength="1" required autofocus class="input-letra">
+            <input name="letra" maxlength="1" required autofocus class="input-letra" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]" title="Solo se permiten letras">
             <button type="submit" class="boton-retro intermedia">PROBAR</button>
           </form>
         {% endif %}

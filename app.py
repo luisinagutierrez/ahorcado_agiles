@@ -88,11 +88,15 @@ def jugar():
 
 @app.route('/intentar', methods=['POST'])
 def intentar():
-    letra = request.form.get('letra', '').lower()
+    letra = request.form.get('letra', '').lower().strip()
     juego = cargar_estado_desde_session()
-    if letra and not juego.juego_finalizado:
+    
+    # Validar que sea solo una letra (sin números ni símbolos)
+    import re
+    if letra and re.match(r'^[a-záéíóúñ]$', letra) and not juego.juego_finalizado:
         juego.intento(letra)
         juego.validar_fin_del_juego()
+    
     guardar_estado_en_session(juego)
     return redirect(url_for('jugar'))
 

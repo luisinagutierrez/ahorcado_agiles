@@ -187,3 +187,167 @@ def ganar_partida(context):
     frase_mostrada = context.driver.find_element(By.CLASS_NAME, "titulo-arcade").text.strip()
     assert frase_mostrada == '¡GANASTE!'
     time.sleep(3)
+
+@given('un juego del Ahorcado con la palabra "{palabra}", "{pista}" (Perder Juego)')
+def inicio_juego_con_palabra_3(context, palabra, pista):
+    options = webdriver.ChromeOptions()
+    if os.getenv('CI'):
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+    context.driver = webdriver.Chrome(options=options)    
+    context.driver.get(f"https://ahorcado-agiles-1acq.vercel.app/inicio?palabra={palabra}&pista={pista}")
+    time.sleep(3)
+
+
+@when('valido las letras "{letra1}" "{letra2}" "{letra3}" "{letra4}" "{letra5}" "{letra6}" "{letra7}" "{letra8}" "{letra9}" "{letra10}" hasta no tener intentos')
+def ingreso_una_letra_In_Co(context, letra1, letra2, letra3, letra4, letra5, letra6, letra7, letra8, letra9, letra10):
+    letras = [letra1, letra2, letra3, letra4, letra5, letra6, letra7, letra8, letra9, letra10]
+   
+    for i, letra in enumerate(letras):
+        if context.driver.find_elements(By.CSS_SELECTOR, ".game-screen h2.titulo-arcade"):
+            break
+       
+        try:
+            intentos_elem = context.driver.find_element(By.CLASS_NAME, "heart-x")
+            intentos_antes = int(intentos_elem.text.replace('×', ''))
+           
+            if intentos_antes <= 0:
+                break
+        except:
+            pass
+       
+        try:
+            input_letra = context.driver.find_element(By.NAME, "letra")
+            submit_button = context.driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
+        except:
+            break
+       
+        input_letra.clear()
+        input_letra.send_keys(letra)
+        submit_button.click()
+        time.sleep(2)
+       
+        try:
+            intentos_elem = context.driver.find_element(By.CLASS_NAME, "heart-x")
+            intentos_despues = int(intentos_elem.text.replace('×', ''))
+           
+            if intentos_despues == 0:
+                time.sleep(3)
+                break
+        except:
+            break
+       
+        time.sleep(1)
+   
+    time.sleep(2)
+
+@then('pierde la partida')
+def perder_partida(context):
+    WebDriverWait(context.driver, 10).until(
+        EC.visibility_of_element_located((By.CLASS_NAME, "titulo-arcade"))
+    )
+    frase_mostrada = context.driver.find_element(By.CLASS_NAME, "titulo-arcade").text.strip()
+    assert frase_mostrada == '¡PERDISTE!'
+    time.sleep(3)
+
+
+@given('un juego de Ahorcado con la palabra "{palabra}", "{pista}" para usar pista')
+def inicio_juego_con_pista(context, palabra, pista):
+    options = webdriver.ChromeOptions()
+    if os.getenv('CI'):
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+    context.driver = webdriver.Chrome(options=options)
+    context.driver.get(f"https://ahorcado-agiles-1acq.vercel.app/inicio?palabra={palabra}&pista={pista}")
+    time.sleep(5)
+
+
+@when('hago algunas jugadas incorrectas "{letra1}" "{letra2}" "{letra3}"')
+def jugadas_incorrectas(context, letra1, letra2, letra3):
+    letras = [letra1, letra2, letra3]
+   
+    for i, letra in enumerate(letras):
+        input_letra = context.driver.find_element(By.NAME, "letra")
+        submit_button = context.driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
+        input_letra.clear()
+        input_letra.send_keys(letra)
+        submit_button.click()
+        time.sleep(2)
+
+
+@when('solicito la pista')
+def solicitar_pista(context):
+    pista_button = context.driver.find_element(By.CSS_SELECTOR, "button.boton-retro.facil")
+    pista_button.click()
+    time.sleep(5)
+   
+    WebDriverWait(context.driver, 10).until(
+        EC.presence_of_element_located((By.CLASS_NAME, "word-display"))
+    )
+
+
+@then('la pista debe mostrarse correctamente')
+def verificar_pista(context):
+    WebDriverWait(context.driver, 10).until(
+        EC.presence_of_element_located((By.ID, "pista-text"))
+    )
+   
+    pista_element = context.driver.find_element(By.ID, "pista-text")
+    pista_texto = pista_element.text.strip()
+   
+    assert pista_texto != "" and pista_texto != "–", f"La pista no se mostró correctamente: '{pista_texto}'"
+    assert "Gran masa de agua salada" in pista_texto, f"La pista no contiene el texto esperado: '{pista_texto}'"
+   
+    input_elemento = context.driver.find_element(By.NAME, "letra")
+    boton_elemento = context.driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
+
+
+@when('puedo continuar jugando "{letra1}" "{letra2}" "{letra3}" "{letra4}" "{letra5}"')
+@then('puedo continuar jugando "{letra1}" "{letra2}" "{letra3}" "{letra4}" "{letra5}"')
+def continuar_jugando_con_pista(context, letra1, letra2, letra3, letra4, letra5):
+    letras = [letra1, letra2, letra3, letra4, letra5]
+   
+    WebDriverWait(context.driver, 10).until(
+        EC.presence_of_element_located((By.NAME, "letra"))
+    )
+   
+    for i, letra in enumerate(letras):
+        if context.driver.find_elements(By.CSS_SELECTOR, ".game-screen h2.titulo-arcade"):
+            break
+       
+        input_letra = WebDriverWait(context.driver, 5).until(
+            EC.presence_of_element_located((By.NAME, "letra"))
+        )
+        submit_button = context.driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
+       
+        input_letra.clear()
+        input_letra.send_keys(letra)
+        submit_button.click()
+        time.sleep(3)
+       
+        try:
+            palabra_elem = WebDriverWait(context.driver, 5).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "word-display"))
+            )
+            palabra_actual = palabra_elem.text
+           
+            if '_' not in palabra_actual:
+                time.sleep(3)
+                break
+        except:
+            pass
+       
+        time.sleep(1)
+
+
+@then('gano la partida con pista')
+@when('gano la partida con pista')
+def ganar_con_pista(context):
+    WebDriverWait(context.driver, 10).until(
+        EC.visibility_of_element_located((By.CLASS_NAME, "titulo-arcade"))
+    )
+    frase_mostrada = context.driver.find_element(By.CLASS_NAME, "titulo-arcade").text.strip()
+    assert frase_mostrada == '¡GANASTE!', f"Debería haber ganado, pero el mensaje es: '{frase_mostrada}'"
+    time.sleep(3)

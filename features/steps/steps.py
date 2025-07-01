@@ -48,7 +48,9 @@ def inicio_juego_con_palabra(context, palabra, pista):
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
     context.driver = webdriver.Chrome(options=options)
-    context.driver.get(f"https://ahorcado-agiles-1acq.vercel.app/inicio?palabra={palabra}&pista={pista}")
+    context.driver.get(
+        f"https://ahorcado-agiles-1acq.vercel.app/inicio?palabra={palabra}&pista={pista}"
+        )
     time.sleep(5)
 
 
@@ -95,7 +97,9 @@ def inicio_juego_con_palabra_4(context, palabra, pista):
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
     context.driver = webdriver.Chrome(options=options)
-    context.driver.get(f"https://ahorcado-agiles-1acq.vercel.app/inicio?palabra={palabra}&pista={pista}")
+    context.driver.get(
+        f"https://ahorcado-agiles-1acq.vercel.app/inicio?palabra={palabra}&pista={pista}"
+        )
     time.sleep(5)
 
 
@@ -142,11 +146,16 @@ def inicio_juego_con_palabra_2(context, palabra, pista):
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
     context.driver = webdriver.Chrome(options=options)
-    context.driver.get(f"https://ahorcado-agiles-1acq.vercel.app/inicio?palabra={palabra}&pista={pista}")
+    context.driver.get(
+        f"https://ahorcado-agiles-1acq.vercel.app/inicio?palabra={palabra}&pista={pista}"
+        )
     time.sleep(3)
 
 
-@when('valido las letras "{letra1}" "{letra2}" "{letra3}" "{letra4}" "{letra5}" "{letra6}" "{letra7}"')
+@when(
+    'valido las letras "{letra1}" "{letra2}" "{letra3}" "{letra4}" '
+    '"{letra5}" "{letra6}" "{letra7}"'
+)
 def ingreso_una_letra_In(context, letra1, letra2, letra3, letra4, letra5, letra6, letra7):
     letras = [letra1, letra2, letra3, letra4, letra5, letra6, letra7]
     for i, letra in enumerate(letras):
@@ -199,12 +208,19 @@ def inicio_juego_con_palabra_3(context, palabra, pista):
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
     context.driver = webdriver.Chrome(options=options)
-    context.driver.get(f"https://ahorcado-agiles-1acq.vercel.app/inicio?palabra={palabra}&pista={pista}")
+    context.driver.get(
+        f"https://ahorcado-agiles-1acq.vercel.app/inicio?palabra={palabra}&pista={pista}"
+        )
     time.sleep(3)
 
 
-@when('valido las letras "{letra1}" "{letra2}" "{letra3}" "{letra4}" "{letra5}" "{letra6}" "{letra7}" "{letra8}" "{letra9}" "{letra10}" hasta no tener intentos')
-def ingreso_una_letra_In_Co(context, letra1, letra2, letra3, letra4, letra5, letra6, letra7, letra8, letra9, letra10):
+@when(
+    'valido las letras "{letra1}" "{letra2}" "{letra3}" "{letra4}" '
+    '"{letra5}" "{letra6}" "{letra7}" "{letra8}" "{letra9}" "{letra10}" '
+    'hasta no tener intentos'
+)
+def ingreso_una_letra_In_Co(
+        context, letra1, letra2, letra3, letra4, letra5, letra6, letra7, letra8, letra9, letra10):
     letras = [letra1, letra2, letra3, letra4, letra5, letra6, letra7, letra8, letra9, letra10]
     for i, letra in enumerate(letras):
         if context.driver.find_elements(By.CSS_SELECTOR, ".game-screen h2.titulo-arcade"):
@@ -255,7 +271,8 @@ def inicio_juego_con_pista(context, palabra, pista):
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
     context.driver = webdriver.Chrome(options=options)
-    context.driver.get(f"https://ahorcado-agiles-1acq.vercel.app/inicio?palabra={palabra}&pista={pista}")
+    context.driver.get(
+        f"https://ahorcado-agiles-1acq.vercel.app/inicio?palabra={palabra}&pista={pista}")
     time.sleep(5)
 
 
@@ -288,8 +305,11 @@ def verificar_pista(context):
     )
     pista_element = context.driver.find_element(By.ID, "pista-text")
     pista_texto = pista_element.text.strip()
-    assert pista_texto != "" and pista_texto != "–", f"La pista no se mostró correctamente: '{pista_texto}'"
-    assert "Gran masa de agua salada" in pista_texto, f"La pista no contiene el texto esperado: '{pista_texto}'"
+    assert (
+        pista_texto not in ("", "–")
+    ), f"La pista no se mostró correctamente: '{pista_texto}'"
+    assert "Gran masa de agua salada" in pista_texto, (
+        f"La pista no contiene el texto esperado: '{pista_texto}'")
 
 
 @when('puedo continuar jugando "{letra1}" "{letra2}" "{letra3}" "{letra4}" "{letra5}"')
@@ -329,6 +349,9 @@ def ganar_con_pista(context):
     WebDriverWait(context.driver, 10).until(
         EC.visibility_of_element_located((By.CLASS_NAME, "titulo-arcade"))
     )
-    frase_mostrada = context.driver.find_element(By.CLASS_NAME, "titulo-arcade").text.strip()
-    assert frase_mostrada == '¡GANASTE!', f"Debería haber ganado, pero el mensaje es: '{frase_mostrada}'"
+    frase_mostrada = context.driver.find_element(
+        By.CLASS_NAME, "titulo-arcade").text.strip()
+    assert frase_mostrada == '¡GANASTE!', (
+        f"Debería haber ganado, pero el mensaje es: '{frase_mostrada}'"
+    )
     time.sleep(3)

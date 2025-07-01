@@ -28,7 +28,10 @@ def cargar_estado_desde_session():
         j.intentos_restantes = session.get('restantes', 7)
         j.juego_finalizado = session.get('juego_finalizado', False)
         j.estado = session.get('estado', '')
-        j.palabra_a_mostrar = ['_' if c not in j.letras_adivinadas else c for c in j.palabra_a_adivinar]
+        j.palabra_a_mostrar = [
+            '_' if c not in j.letras_adivinadas else c
+            for c in j.palabra_a_adivinar
+        ]
     return j
 
 

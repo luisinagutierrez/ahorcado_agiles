@@ -58,7 +58,7 @@ class Ahorcado:
 
         if letra not in self.palabra_a_adivinar:
             self.intentos_restantes -= 1
-            return False
+            return True
         else:
             for i, char in enumerate(self.palabra_a_adivinar):
                 if char == letra:
